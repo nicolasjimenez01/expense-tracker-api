@@ -4,15 +4,15 @@ from app.config.database import users_collection
 
 import jwt
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
 from pwdlib import PasswordHash
-from pydantic import BaseModel
 from app.schemas.token_schema import TokenData, Token
+from app.utils.settings import settings
 
-SECRET_KEY = "be8601a94ce17f3bd341b62dd0d3123ad95e7a237bfa012477a1faf9d36562ac"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+SECRET_KEY = settings.SECRET_KEY
+ALGORITHM = settings.ALGORITHM
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 
 password_hash = PasswordHash.recommended()
 

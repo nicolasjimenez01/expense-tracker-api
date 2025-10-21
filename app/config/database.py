@@ -1,7 +1,8 @@
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
+from app.utils.settings import settings
 
-MONGO_URL = "mongodb://localhost:27017/"
+MONGO_URL = settings.MONGO_URL
 
 try:
     client = MongoClient(MONGO_URL, serverSelectionTimeoutMS=5000)

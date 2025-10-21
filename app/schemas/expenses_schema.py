@@ -28,3 +28,10 @@ class ExpenseOut(ExpenseDb):
 
     class Config:
         populate_by_name = True
+
+
+class ExpenseUpdate(BaseModel):
+    description: str | None = Field(..., min_length=2, max_length=130, examples=["Nuevo gasto por concierto"])
+    valor: float | None = Field(..., gt=0, description="Amount of expense")
+    category: CategoryEnum | None = Field(None, description="expense category")
+    date: datetime | None = None
